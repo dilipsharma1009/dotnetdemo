@@ -45,7 +45,8 @@ stages:
         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
         appType: 'webAppLinux'
         WebAppName: 'DotnetWebApp-Dev'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_dilipsharma1009.dotnetdemo/drop'
+    
 
 
 - stage: 'DeploytoUAT'
@@ -59,7 +60,7 @@ stages:
         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
         appType: 'webAppLinux'
         WebAppName: 'DotnetwebApp-UAT'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_dilipsharma1009.dotnetdemo/drop'
 
 
 
@@ -75,7 +76,7 @@ stages:
         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
         appType: 'webAppLinux'
         WebAppName: 'DotNetWebApp-stag'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_dilipsharma1009.dotnetdemo/drop'
 
 
 
@@ -91,6 +92,6 @@ stages:
         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
         appType: 'webAppLinux'
         WebAppName: 'DotNetWebApp-Prod'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_dilipsharma1009.dotnetdemo/drop'
         publishLocation: 'Container'
 
