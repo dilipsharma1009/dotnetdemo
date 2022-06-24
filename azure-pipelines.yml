@@ -39,13 +39,13 @@ stages:
   jobs:
   - job: 'Dev_Stage'
     steps:
-     - task: AzureRmWebAppDeployment@4
-       inputs:
-         ConnectionType: 'AzureRM'
-         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
-         appType: 'webAppLinux'
-         WebAppName: 'DotnetWebApp-Dev'
-         packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*'
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
+        appType: 'webAppLinux'
+        WebAppName: 'DotnetWebApp-Dev'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*'
 
 
 - stage: 'DeploytoUAT'
