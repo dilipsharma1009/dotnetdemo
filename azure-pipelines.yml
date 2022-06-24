@@ -33,11 +33,64 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-  
-    # - task: DotNetCoreCLI@2
-    #   displayName: Publish Projects
-    #   inputs:
-    #     command: 'publish'
-    #     publishWebProjects: true
-    #     arguments: '--configuration $(buildConfiguration) -f $(dotNetFramework) --runtime $(targetRuntime) --self-contained -o $(Build.ArtifactStagingDirectory)'
-    #     zipAfterPublish: true
+
+
+- stage: 'Deployment'
+  jobs:
+  - job: 'Dev_Stage'
+    steps:
+     - task: AzureRmWebAppDeployment@4
+       inputs:
+         ConnectionType: 'AzureRM'
+         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
+         appType: 'webAppLinux'
+         WebAppName: 'DotnetWebApp-Dev'
+         packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+
+- stage: 'DeploytoUAT'
+  jobs:
+  - job: 'Test'
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Deploy Azure App Service'
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
+        appType: 'webAppLinux'
+        WebAppName: 'DotnetwebApp-UAT'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+
+
+- stage: 'DeploytoStag'
+  jobs:
+  - job: 'Staging'
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Deploy Azure App Service'
+
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
+        appType: 'webAppLinux'
+        WebAppName: 'DotNetWebApp-stag'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+
+
+- stage: 'Deploytoproduction'
+  jobs:
+  - job: 'Prod'
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Deploy Azure App Service'
+
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
+        appType: 'webAppLinux'
+        WebAppName: 'DotNetWebApp-Prod'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        publishLocation: 'Container'
+
