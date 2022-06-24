@@ -45,7 +45,7 @@ stages:
         azureSubscription: 'Azure subscription 1 (209f5361-8ffb-4f86-9bc9-41e6f30029e6)'
         appType: 'webAppLinux'
         WebAppName: 'DotnetWebApp-Dev'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/_dilipsharma1009.dotnetdemo/drop'
+        packageForLinux: '/home/azureuser/myagent/_work/3/a'
     
 
 
