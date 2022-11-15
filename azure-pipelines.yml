@@ -9,7 +9,7 @@ trigger:
 - master
 
 pool:
-  name: Hosted Agent
+  name: Default
 
 variables:
   buildConfiguration: 'Release'
